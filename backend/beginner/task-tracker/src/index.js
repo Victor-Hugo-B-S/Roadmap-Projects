@@ -12,3 +12,6 @@ try {
 } catch (err) {
   if (err.code !== "EEXIST") throw err;
 }
+
+let data = await fs.readFile(filePath, "utf8");
+let tasks = JSON.parse(data);
