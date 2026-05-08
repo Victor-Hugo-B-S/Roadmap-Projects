@@ -27,7 +27,7 @@ async function saveTasks() {
 
 const args = process.argv.slice(2);
 const command = args[0] ? args[0] : false;
-let id, description;
+let id, description, index;
 switch (command) {
   case "add":
     if (argNotExist(1, "Description")) break;
@@ -45,6 +45,25 @@ switch (command) {
 
     await saveTasks();
     console.log("Saved with id: " + id);
+    break;
+
+  case "update":
+    if (argNotExist(1, "id")) break;
+    if (argNotExist(2, "new description")) break;
+
+    id = parseInt(args[1]);
+    description = args[2];
+    index = tasks.findIndex((t) => t.id === id);
+
+    if (index === -1) {
+      console.log(`Task with id ${id} not found`);
+      break;
+    }
+
+    tasks[index].description = description;
+    tasks[index].updatedAt = Date.now();
+    await saveTasks();
+
     break;
 
   default:
