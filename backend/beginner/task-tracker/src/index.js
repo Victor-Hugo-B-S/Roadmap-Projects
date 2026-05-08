@@ -19,8 +19,7 @@ const tasks = JSON.parse(data);
 async function saveTasks() {
   try {
     await fs.writeFile(filePath, JSON.stringify(tasks), { flag: "w" });
-    console.log("succesfully saved");
-    return true;
+    console.log("Successfully saved");
   } catch (err) {
     throw err;
   }
