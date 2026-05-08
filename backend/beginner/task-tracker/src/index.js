@@ -27,13 +27,13 @@ async function saveTasks() {
 
 const args = process.argv.slice(2);
 const command = args[0] ? args[0] : false;
-
+let id, description;
 switch (command) {
   case "add":
     if (argNotExist(1, "Description")) break;
-    const description = args[1].trim();
+    description = args[1].trim();
 
-    const id = tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 0;
+    id = tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 0;
 
     tasks.push({
       id,
