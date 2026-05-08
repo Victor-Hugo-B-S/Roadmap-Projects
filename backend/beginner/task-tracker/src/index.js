@@ -14,4 +14,13 @@ try {
 }
 
 let data = await fs.readFile(filePath, "utf8");
-let tasks = JSON.parse(data);
+const tasks = JSON.parse(data);
+
+async function saveTasks() {
+  try {
+    await fs.writeFile(filePath, JSON.stringify(tasks), { flag: "w" });
+    console.log("succesfully saved");
+  } catch (err) {
+    throw err;
+  }
+}
