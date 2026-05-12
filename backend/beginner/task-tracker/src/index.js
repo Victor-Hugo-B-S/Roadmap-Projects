@@ -98,6 +98,23 @@ switch (command) {
 
     break;
 
+  case "mark-done":
+    if (argNotExist(1, "id")) break;
+
+    id = parseInt(args[1]);
+    index = tasks.findIndex((t) => t.id === id);
+    if (index === -1) {
+      console.log(`Task with id ${id} not found`);
+      break;
+    }
+
+    tasks[index].status = "done";
+    tasks[index].updatedAt = Date.now();
+
+    await saveTasks();
+
+    break;
+
   default:
     console.log(`Command "${command}" does not exist`);
     break;
