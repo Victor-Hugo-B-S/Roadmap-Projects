@@ -115,6 +115,31 @@ switch (command) {
 
     break;
 
+  case "list":
+    let filter = !args[1] ? false : args[1];
+
+    const validStatus = ["todo", "in-progress", "done"];
+    if (filter && !validStatus.includes(filter)) {
+      console.log(`${filter} is an invalid status, try: `);
+      validStatus.forEach((v) => console.log(`- ${v}`));
+      break;
+    }
+
+    console.log("task".padEnd(30), "id".padEnd(10), "status");
+    console.log("-----------------------------------------------------");
+    const filteredTasks = !filter
+      ? tasks
+      : tasks.filter((t) => t.status === filter);
+    filteredTasks.forEach((task) =>
+      console.log(
+        task.description.padEnd(30),
+        task.id.toString().padEnd(10),
+        task.status,
+      ),
+    );
+
+    break;
+
   default:
     console.log(`Command "${command}" does not exist`);
     break;
