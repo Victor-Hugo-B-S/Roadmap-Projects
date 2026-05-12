@@ -66,6 +66,21 @@ switch (command) {
 
     break;
 
+  case "delete":
+    if (argNotExist(1, "id")) break;
+
+    id = parseInt(args[1]);
+    index = tasks.findIndex((t) => t.id === id);
+    if (index === -1) {
+      console.log(`Task with id ${id} not found`);
+      break;
+    }
+    tasks.splice(index, 1);
+    tasks[index].updatedAt = Date.now();
+    await saveTasks();
+
+    break;
+
   default:
     console.log(`Command "${command}" does not exist`);
     break;
