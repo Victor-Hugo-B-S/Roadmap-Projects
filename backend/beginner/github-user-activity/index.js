@@ -41,6 +41,12 @@ try {
     acc[repo][type] = (acc[repo][type] ?? 0) + 1;
     return acc;
   }, {});
+
+  Object.entries(summary).forEach(([repo, types]) => {
+    Object.entries(types).forEach(([type, count]) => {
+      console.log(getMessageByType(type, repo, count));
+    });
+  });
 } catch (e) {
   console.log("---error: ", e);
 }
