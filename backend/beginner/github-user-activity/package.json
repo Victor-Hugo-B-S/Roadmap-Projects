@@ -1,6 +1,9 @@
 {
   "name": "github-user-activity",
   "version": "1.0.0",
+  "bin": {
+    "github-user-activity": "./index.js"
+  },
   "description": "Use GitHub API to fetch user activity and display it in the terminal.",
   "license": "ISC",
   "author": "",
